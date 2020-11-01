@@ -2,8 +2,8 @@ import * as React from 'react';
 
 
 import Router from "./router"
-import './App.scss';
-import './App.css';
+import './mobster.css';
+import './maicons.css'
 
 import { Provider } from 'react-redux';
 import Configure from "./redux/store"

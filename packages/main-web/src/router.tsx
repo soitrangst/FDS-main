@@ -2,10 +2,9 @@ import * as React from "react"
 import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom"
 
 import { Url } from "@service/infastructural/constant"
-import Detail from "@view/Detail"
-import Empty from "@view/Empty"
-import Home from "@view/Home"
+import Empty from "@view/pages/404/Empty"
 
+import Home from "@view/pages/home"
 import Header from "@view/components/header"
 import Footer from "@view/components/footer"
 
@@ -16,14 +15,15 @@ const Router: React.FC = () => {
     <React.Fragment>
 
       <Header />
+
       <BrowserRouter>
         <Switch>
 
-          <Route exact path="/" >
+          <Route exact path={Url.home} >
             <Home />
           </Route>
 
-          <Route path={Url.application}>
+          {/* <Route path={Url.application}>
             <Detail />
           </Route>
 
@@ -37,7 +37,7 @@ const Router: React.FC = () => {
 
           <Route path={Url.contact}>
             <Detail />
-          </Route>
+          </Route> */}
 
           <Route path="/401">
             <h1>bad server</h1>

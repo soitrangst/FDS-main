@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import Logo from "@assets/logo/favicon.png"
 
 const Footer:React.FC = ()=> {
     return (
@@ -60,7 +60,7 @@ const Footer:React.FC = ()=> {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-6 py-2">
-              <img src="../assets/favicon-light.png" alt="" width={40} />
+              <img src={Logo} alt="" width={40} />
               {/* Please don't remove or modify the credits below */}
               <p className="d-inline-block ml-2">Copyright © <a href="https://www.macodeid.com/" className="fg-white fw-medium">MACode ID</a>. All rights reserved</p>
             </div>
