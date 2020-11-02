@@ -1,34 +1,42 @@
 import * as React from "react";
 
+import { useLocation,Link } from 'react-router-dom'
+
 import logo from "@assets/logo/favicon.png"
+import { Url } from "@service/infastructural/constant";
+
 
 const Header: React.FC = () => {
+
+    const location = useLocation().pathname;
+
+    const checkNav = location === Url.home ? "ml-lg-5" : "link-center"
+    
     return (
         <nav className="navbar navbar-expand-lg navbar-light navbar-floating">
             <div className="container">
-                <a className="navbar-brand" href="#">
+                <Link className="navbar-brand" to={Url.home}>
                     <img src={logo} alt="" width={40} />
-                </a>
+                </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon" />
                 </button>
                 <div className="collapse navbar-collapse" id="navbarToggler">
-                    <ul className="navbar-nav ml-lg-5 mt-3 mt-lg-0">
-                        <li className="nav-item dropdown active">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item active" href="index.html">Homepage 1</a>
-                                <a className="dropdown-item" href="index-2.html">Homepage 2</a>
-                            </div>
+                    <ul className={`navbar-nav mt-3 mt-lg-0 ${checkNav}`}>
+                        <li className={`nav-item ${location=== Url.home ? "active" : "" }`}>
+                        <Link className="nav-link" to={Url.home}>Home</Link>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="about.html">About</a>
+                        <li className={`nav-item ${location=== Url.application ? "active" : "" }`}>
+                        <Link className="nav-link" to={Url.application}>Application</Link>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="updates.html">What&apos;s New</a>
+                        <li className={`nav-item ${location=== Url.about ? "active" : "" }`}>
+                            <Link className="nav-link" to={Url.about}>About</Link>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="contact.html">Contact</a>
+                        <li className={`nav-item ${location=== Url.news ? "active" : "" }`}>
+                            <Link className="nav-link" to={Url.news}>What&apos;s New</Link>
+                        </li>
+                        <li className={`nav-item ${location=== Url.contact ? "active" : "" }`}>
+                            <Link className="nav-link" to={Url.contact}>Contact</Link>
                         </li>
                     </ul>
                     <div className="ml-auto my-2 my-lg-0">

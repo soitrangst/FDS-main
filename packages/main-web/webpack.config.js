@@ -1,4 +1,3 @@
-
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -14,7 +13,6 @@ const VENDOR_LIBS = [
     "redux-saga",
     "axios",
     "react-hook-form",
-    "antd"
 ]
 
 module.exports = (env, options) => {
@@ -36,8 +34,7 @@ module.exports = (env, options) => {
             extensions: ['.ts', '.tsx', '.js']
         },
         module: {
-            rules: [
-                {
+            rules: [{
                     test: /\.(ts|js)x?$/,
                     exclude: /node_modules/,
                     use: {
@@ -79,26 +76,29 @@ module.exports = (env, options) => {
 
             ],
         },
-        devtool: isDevelopment
-            ? "eval-cheap-module-source-map"
-            : "nosources-source-map",
+        devtool: isDevelopment ?
+            "eval-cheap-module-source-map" : "nosources-source-map",
         optimization: {
             runtimeChunk: {
                 name: "runtime",
             },
             splitChunks: {
                 chunks: 'all',
-                name: false
-              }
+                name: false,
+                cacheGroups: {
+                    default: false,
+                    vendors: false
+                }
+
+            }
         },
         performance: {
             hints: false,
         },
         plugins: [
             new HtmlWebpackPlugin({
-                minify: isDevelopment
-                    ? false
-                    : {
+                minify: isDevelopment ?
+                    false : {
                         collapseWhitespace: true,
                         keepClosingSlash: true,
                         minifyCSS: true,
@@ -114,16 +114,14 @@ module.exports = (env, options) => {
                 template: "./src/index.html",
             }),
             new MiniCssExtractPlugin(),
-            ...(isDevelopment
-                ? []
-                : [
-                    new CompressionPlugin({
-                        filename: '[name].br[query]',
-                        algorithm: 'brotliCompress',
-                        test: /\.(js|css|html|svg)$/,
-                        compressionOptions: { level: 11 },
-                    }),
-                ]),
+            ...(isDevelopment ? [] : [
+                new CompressionPlugin({
+                    filename: '[name].br[query]',
+                    algorithm: 'brotliCompress',
+                    test: /\.(js|css|html|svg)$/,
+                    compressionOptions: { level: 11 },
+                }),
+            ]),
             ...(isDevelopment ? [new webpack.HotModuleReplacementPlugin()] : []),
         ],
         stats: {

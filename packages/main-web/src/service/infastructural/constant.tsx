@@ -24,9 +24,15 @@ export const Constant = {
 };
 
 export const Url = {
-    home:"",
+    home:"/",
     application:"/application",
     about:"/about",
     news:"/news",
     contact:"/contact",
+}
+
+export const location = {
+    lat:'10.762622',
+    lng:'106.660172',
+    api:'AIzaSyAKw-QYLZgXiVmdp2O-RsIX_NEIXjqggXA'
 }
